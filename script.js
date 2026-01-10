@@ -1,14 +1,15 @@
 const myLibrary = [];
 
-function Book(title, author, pages){
+function Book(title, author, pages, read = false){
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
-function addBookToLibrary(title, author, pages){
-    let newBook = new Book(title, author, pages);
+function addBookToLibrary(title, author, pages, read){
+    let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
 }
 
@@ -28,19 +29,27 @@ function displayLibrary() {
         const bookTitle = document.createElement('p');
         const bookAuthor = document.createElement('p');
         const bookPages = document.createElement('p');
+        const readStatus = document.createElement('button');
 
         bookTitle.textContent = `Title: ${book.title}`;
         bookAuthor.textContent = `Author: ${book.author}`;
         bookPages.textContent = `Pages: ${book.pages} pages`;
+        readStatus.textContent = book.read ? "Read" : "Not read";
 
         bookDiv.appendChild(removeBook);
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookAuthor);
         bookDiv.appendChild(bookPages);
+        bookDiv.appendChild(readStatus);
 
         removeBook.addEventListener('click' , () =>{
             const index = myLibrary.findIndex(b => b.id === book.id);
             myLibrary.splice(index, 1);
+            displayLibrary();
+        })
+
+        readStatus.addEventListener('click', ()=> {
+            book.read = !book.read;
             displayLibrary();
         })
 
@@ -68,7 +77,12 @@ addBook.addEventListener('click', (e) => {
     const newTitle = document.getElementById('title').value;
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
-    addBookToLibrary(newTitle, newAuthor, newPages);
+
+    const readStatus = document.querySelector(
+        'input[name="readStatus"]:checked'
+    );
+
+    addBookToLibrary(newTitle, newAuthor, newPages, readStatus.value === "true");
 
     dialog.close();
     displayLibrary();
