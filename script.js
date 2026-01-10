@@ -27,19 +27,23 @@ function displayLibrary() {
         removeBook.classList.add("remove-book");
 
         const bookTitle = document.createElement('p');
+        bookTitle.classList.add('book-title');
+        const bookContainer = document.createElement('div');
         const bookAuthor = document.createElement('p');
+        bookAuthor.classList.add('book-author');
         const bookPages = document.createElement('p');
+        bookPages.classList.add('book-pages');
         const readStatus = document.createElement('button');
         readStatus.classList.add('read-btn');
 
-        bookTitle.textContent = `Title: ${book.title}`;
-        bookAuthor.textContent = `Author: ${book.author}`;
-        bookPages.textContent = `Pages: ${book.pages} pages`;
+        bookTitle.textContent = `${book.title}`;
+        bookAuthor.textContent = `${book.author}`;
+        bookPages.textContent = `${book.pages} pages`;
         readStatus.textContent = book.read ? "Read" : "Not read";
 
         readStatus.addEventListener('mouseenter', () => {
             readStatus.dataset.prevText = readStatus.textContent;
-            readStatus.textContent = book.read ? "Mark as unread" : "Mark as read";
+            readStatus.textContent = book.read ? "Mark as not read" : "Mark as read";
         });
 
         readStatus.addEventListener('mouseleave', () => {
@@ -54,10 +58,11 @@ function displayLibrary() {
             readStatus.classList.add('unread')
         };
 
+        bookContainer.appendChild(bookAuthor);
+        bookContainer.appendChild(bookPages);
         bookDiv.appendChild(removeBook);
         bookDiv.appendChild(bookTitle);
-        bookDiv.appendChild(bookAuthor);
-        bookDiv.appendChild(bookPages);
+        bookDiv.appendChild(bookContainer);
         bookDiv.appendChild(readStatus);
 
         removeBook.addEventListener('click' , () =>{
