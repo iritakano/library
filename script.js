@@ -23,7 +23,7 @@ function displayLibrary() {
 
         const removeBook = document.createElement("button");
         removeBook.textContent = "X";
-        removeBook.classList.add(".remove-book");
+        removeBook.classList.add("remove-book");
 
         const bookTitle = document.createElement('p');
         const bookAuthor = document.createElement('p');
@@ -37,6 +37,12 @@ function displayLibrary() {
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookAuthor);
         bookDiv.appendChild(bookPages);
+
+        removeBook.addEventListener('click' , () =>{
+            const index = myLibrary.findIndex(b => b.id === book.id);
+            myLibrary.splice(index, 1);
+            displayLibrary();
+        })
 
         library.appendChild(bookDiv);
     });
