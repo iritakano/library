@@ -7,7 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="library"></div>
+    <div class="library">
+
+    </div>
+
+    <button class="addBookBtn">+ Add New Book</button>
+    <dialog>
+        <form action="#">
+            <button class="close-btn" autofocus>X</button>
+
+            <label for="title">Title: </label>
+            <input type="text" id="title" name="title" placeholder="Title" required>
+
+            <label for="author">Author: </label>
+            <input type="text" id="author" name="author" placeholder="Author" required>
+
+            <label for="pages">Number of Pages:  </label>
+            <input type="number" id="pages" name="pages" placeholder="Number of Pages" required>
+
+            <input type="radio" id="read" name="readStatus" value="read">
+            <label for="read">I have read this book</label>
+
+            <input type="radio" id="not-read" name="readStatus" value="not-read">
+            <label for="not-read">I have not read this book</label>
+
+            <button type="submit" class="submit-btn">Add Book</button>
+        </form>
+    </dialog>
+
     <script src="script.js"></script>
     
 </body>

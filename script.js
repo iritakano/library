@@ -20,6 +20,11 @@ function displayLibrary() {
     myLibrary.forEach(book => {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
+
+        const removeBook = document.createElement("button");
+        removeBook.textContent = "X";
+        removeBook.classList.add(".remove-book");
+
         const bookTitle = document.createElement('p');
         const bookAuthor = document.createElement('p');
         const bookPages = document.createElement('p');
@@ -28,6 +33,7 @@ function displayLibrary() {
         bookAuthor.textContent = `Author: ${book.author}`;
         bookPages.textContent = `Pages: ${book.pages} pages`;
 
+        bookDiv.appendChild(removeBook);
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookAuthor);
         bookDiv.appendChild(bookPages);
@@ -35,3 +41,35 @@ function displayLibrary() {
         library.appendChild(bookDiv);
     });
 }
+
+const addNew = document.querySelector('.addBookBtn');
+const dialog = document.querySelector("dialog");
+const closeButton = document.querySelector(".close-btn");
+const form = document.querySelector("dialog form")
+
+addNew.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeButton.addEventListener("click", () => {
+  dialog.close();
+});
+
+const addBook = document.querySelector('.submit-btn');
+
+addBook.addEventListener('click', (e) => {
+    e.preventDefault();
+    const newTitle = document.getElementById('title').value;
+    const newAuthor = document.getElementById('author').value;
+    const newPages = document.getElementById('pages').value;
+    addBookToLibrary(newTitle, newAuthor, newPages);
+
+    dialog.close();
+    displayLibrary();
+
+    form.reset();
+});
+
+addBookToLibrary('hello', 'bye bye', 25);
+addBookToLibrary('hello', 'bye bye', 25);
+displayLibrary();
