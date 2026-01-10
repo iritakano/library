@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 16px;
+    position: relative;
+    padding: 40px;
+}
+
+.addBookBtn{
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.library{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+dialog{
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    padding: 30px;
+}
+
+dialog form{
+    display: flex;
+    flex-direction: column;
+}
+
+dialog:not([open]){
+    display: none;
+}
+
+form input{
+    margin: 5px 0 20px 0;
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border-radius: 15px;
+}
+
+form label{
+    font-size: 1.05rem;
+}
+
+#not-read{
+    margin-left: 15px;
+}
+
+.radio-btns label{
+    font-size: 1.1rem;
+}
+
+.radio-btns{
+    margin: 20px 0;
+}
+
+.close-container{
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.close-btn{
+    padding: 7px;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.submit-btn{
+    padding: 10px;
+    font-size: 1.1rem;
+    border-radius: 15px;
+}
+
+
+.book{
+    border: 1px solid black;
+    line-height: 1.5;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.remove-book{
+    display: flex;
+    justify-self: right;
+    width: 37px;
+    height: 37px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+}
+
+.read-btn{
+    margin-top: 20px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px){
+    .library{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 425px){
+    .library{
+        grid-template-columns: repeat(1, 1fr);
+        gap: 15px;
+    }
+}
+
