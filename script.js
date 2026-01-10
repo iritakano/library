@@ -30,11 +30,29 @@ function displayLibrary() {
         const bookAuthor = document.createElement('p');
         const bookPages = document.createElement('p');
         const readStatus = document.createElement('button');
+        readStatus.classList.add('read-btn');
 
         bookTitle.textContent = `Title: ${book.title}`;
         bookAuthor.textContent = `Author: ${book.author}`;
         bookPages.textContent = `Pages: ${book.pages} pages`;
         readStatus.textContent = book.read ? "Read" : "Not read";
+
+        readStatus.addEventListener('mouseenter', () => {
+            readStatus.dataset.prevText = readStatus.textContent;
+            readStatus.textContent = book.read ? "Mark as unread" : "Mark as read";
+        });
+
+        readStatus.addEventListener('mouseleave', () => {
+            readStatus.textContent = readStatus.dataset.prevText;
+        });
+
+        if(book.read){
+            readStatus.classList.add('read')
+        }
+
+        if(!book.read){
+            readStatus.classList.add('unread')
+        };
 
         bookDiv.appendChild(removeBook);
         bookDiv.appendChild(bookTitle);
@@ -73,7 +91,6 @@ closeButton.addEventListener("click", () => {
 const addBook = document.querySelector('.submit-btn');
 
 addBook.addEventListener('click', (e) => {
-    e.preventDefault();
     const newTitle = document.getElementById('title').value;
     const newAuthor = document.getElementById('author').value;
     const newPages = document.getElementById('pages').value;
@@ -82,7 +99,13 @@ addBook.addEventListener('click', (e) => {
         'input[name="readStatus"]:checked'
     );
 
-    addBookToLibrary(newTitle, newAuthor, newPages, readStatus.value === "true");
+    if(!readStatus){
+       addBookToLibrary(newTitle, newAuthor, newPages, false) 
+    }
+
+    else{
+        addBookToLibrary(newTitle, newAuthor, newPages, readStatus.value === "true")
+    };
 
     dialog.close();
     displayLibrary();
@@ -90,6 +113,4 @@ addBook.addEventListener('click', (e) => {
     form.reset();
 });
 
-addBookToLibrary('hello', 'bye bye', 25);
-addBookToLibrary('hello', 'bye bye', 25);
 displayLibrary();
