@@ -22,6 +22,9 @@ function displayLibrary() {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add('book');
 
+        const removeContainer = document.createElement("div")
+        removeContainer.classList.add("remove-container");
+
         const removeBook = document.createElement("button");
         removeBook.textContent = "X";
         removeBook.classList.add("remove-book");
@@ -29,6 +32,7 @@ function displayLibrary() {
         const bookTitle = document.createElement('p');
         bookTitle.classList.add('book-title');
         const bookContainer = document.createElement('div');
+        bookContainer.classList.add('book-container');
         const bookAuthor = document.createElement('p');
         bookAuthor.classList.add('book-author');
         const bookPages = document.createElement('p');
@@ -58,9 +62,10 @@ function displayLibrary() {
             readStatus.classList.add('unread')
         };
 
+        removeContainer.appendChild(removeBook);
         bookContainer.appendChild(bookAuthor);
         bookContainer.appendChild(bookPages);
-        bookDiv.appendChild(removeBook);
+        bookDiv.appendChild(removeContainer);
         bookDiv.appendChild(bookTitle);
         bookDiv.appendChild(bookContainer);
         bookDiv.appendChild(readStatus);
